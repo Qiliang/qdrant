@@ -24,7 +24,9 @@ jobs:
       env:
         RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
       run: |
-        docker login --username  ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
+        docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+        docker buildx create --use
+        docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
 
         DOCKERHUB_TAG="xiaoql/qdrant:${{ github.ref_name }}"
         TAGS="-t ${DOCKERHUB_TAG}"
