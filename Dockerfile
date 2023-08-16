@@ -68,7 +68,7 @@ RUN xx-apt-get install -y gcc g++ libc6-dev
 ARG PROFILE=release
 
 # Enable crate features
-ARG FEATURES
+ARG FEATURES=multiling-chinese
 
 # Pass custom `RUSTFLAGS` (e.g., `--cfg tokio_unstable` to enable Tokio tracing/`tokio-console`)
 ARG RUSTFLAGS
